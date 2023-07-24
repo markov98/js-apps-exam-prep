@@ -1,13 +1,14 @@
 import page from '../node_modules/page/page.mjs';
 import {render} from "../../node_modules/lit-html/lit-html.js";
 import { showHome } from './views/home.js';
+import { showRegister } from './views/register.js';
 
 
 const main = document.querySelector('main');
 
 function decorateContext(ctx, next) {
     ctx.render = function (content) {
-        render(content, document.querySelector("main"));
+        render(content, main);
     };
 
     next();
@@ -16,6 +17,6 @@ function decorateContext(ctx, next) {
 page(decorateContext);
 
 page('/', showHome);
-
+page('/register', showRegister)
 
 page.start();
