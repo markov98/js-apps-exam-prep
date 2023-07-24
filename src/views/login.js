@@ -37,8 +37,13 @@ export function showLogin(ctx) {
           return null;
       }
   
-      await login(email, pass);
+
+      try {
+        await login(email, pass);
   
-      ctx.page.redirect('/')
+        ctx.page.redirect('/')  
+      } catch (err) {
+        console.log(err.message);
+      }
   }
   }

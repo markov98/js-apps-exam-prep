@@ -49,8 +49,12 @@ export function showRegister(ctx) {
           return null;
         }
     
-        await register(email, pass);
+        try {
+          await register(email, pass);
     
-        ctx.page.redirect('/')
+          ctx.page.redirect('/')
+        } catch (err) {
+          console.log(err.message);
+        }
     }
 }
