@@ -1,10 +1,11 @@
-import {html} from "../../node_modules/lit-html/lit-html.js";
+import { html } from "../../node_modules/lit-html/lit-html.js";
+import { register } from "../api/auth.js";
 
-const template = () => html`
+const template = (onRegister) => html`
         <section id="register">
           <div class="form">
             <h2>Register</h2>
-            <form class="login-form">
+            <form class="login-form" @submit=${onRegister}>
               <input
                 type="text"
                 name="email"
@@ -30,5 +31,23 @@ const template = () => html`
         </section>`;
 
 export function showRegister(ctx) {
-    ctx.render(template(ctx.user));
-  }
+    ctx.render(template(onRegister));
+
+    async function onRegister(e) {
+        e.preventDefault();
+    
+        const formData = new FormData(e.target);
+        const email = formData.get('email');
+        const pass = formData.get('password');
+        const rePass = formData.get('re-password');
+    
+        if ([email, pass, rePass].some(el => el === '')) {
+            alert('You have empty fields');
+            return null;
+        }
+    
+        register(email, pass);
+    
+        ctx.page.redirect('/')
+    }
+}

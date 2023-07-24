@@ -22,5 +22,5 @@ const template = () => html`
 `
 
 export function showLogin(ctx) {
-    ctx.render(template(ctx.user));
+    ctx.render(template());
   }

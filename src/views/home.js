@@ -10,5 +10,5 @@ const template = () => html`
     </section>`;
 
 export function showHome(ctx) {
-    ctx.render(template(ctx.user));
+    ctx.render(template());
   }
