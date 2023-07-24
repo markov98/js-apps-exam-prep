@@ -44,6 +44,9 @@ export function showRegister(ctx) {
         if ([email, pass, rePass].some(el => el === '')) {
             alert('You have empty fields');
             return null;
+        } else if (pass !== rePass) {
+          alert('Passwords do not match');
+          return null;
         }
     
         register(email, pass);
