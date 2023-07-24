@@ -49,7 +49,7 @@ export function showRegister(ctx) {
           return null;
         }
     
-        register(email, pass);
+        await register(email, pass);
     
         ctx.page.redirect('/')
     }

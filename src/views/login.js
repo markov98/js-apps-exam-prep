@@ -37,7 +37,7 @@ export function showLogin(ctx) {
           return null;
       }
   
-      login(email, pass);
+      await login(email, pass);
   
       ctx.page.redirect('/')
   }

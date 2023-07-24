@@ -40,8 +40,8 @@ function updateNav(ctx, next) {
     next()
 }
 
-page(session);
 page(decorateContext);
+page(session);
 page(updateNav);
 
 page('/', showHome);
