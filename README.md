@@ -1,2 +1,2 @@
 # js-apps-exam-prep
-Preparing for my JS Apps exam.
+I'm preparing for my JS Apps exam.
