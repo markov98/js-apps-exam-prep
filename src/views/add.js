@@ -50,31 +50,23 @@ const template = (onSubmit) => html`
 
 export function showAdd(ctx) {
     ctx.render(template(onSubmit));
-
+  
     async function onSubmit(e) {
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-        const data = {
-            brand: formData.get('brand'),
-            model: formData.get('model'),
-            imageUrl: formData.get('imageUrl'),
-            release: formData.get('release'),
-            designer: formData.get('designer'),
-            value: formData.get('value')
-        }
-
-        if (Object.values(data).some(val => val === '')) {
-            alert('Empty fields');
-            return null;
-        }
-
-        try {
-            await addShoe(data);
-      
-            ctx.page.redirect('/dashboard')
-          } catch (err) {
-            console.log(err.message);
-          }
+      e.preventDefault();
+  
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+  
+      if (Object.values(data).some(val => !val)) {
+        alert('Empty fields');
+        return null;
+      }
+  
+      try {
+        await addShoe(data);
+        ctx.page.redirect('/dashboard');
+      } catch (err) {
+        console.log(err.message);
+      }
     }
-}
+  }
