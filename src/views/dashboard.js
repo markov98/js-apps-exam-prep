@@ -19,7 +19,7 @@ const template = (shoes) => html`
                         ><span class="model">${shoe.model}</span>
                     </p>
                     <p><strong>Value:</strong><span class="value">${shoe.value}</span>$</p>
-                    <a class="details-btn" href="">Details</a>
+                    <a class="details-btn" href="$/datails/${shoe._id}">Details</a>
                     </li>
                     `)}
                 </ul>
