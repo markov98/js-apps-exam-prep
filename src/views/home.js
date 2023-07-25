@@ -11,4 +11,4 @@ const template = () => html`
 
 export function showHome(ctx) {
     ctx.render(template());
-  }
+}
