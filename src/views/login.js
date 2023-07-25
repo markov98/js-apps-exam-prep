@@ -1,4 +1,4 @@
-import {html} from "../../node_modules/lit-html/lit-html.js";
+import { html } from "../../node_modules/lit-html/lit-html.js";
 import { login } from "../api/auth.js";
 
 const template = (onLogin) => html`
@@ -15,7 +15,7 @@ const template = (onLogin) => html`
               />
               <button type="submit">login</button>
               <p class="message">
-                Not registered? <a href="#">Create an account</a>
+                Not registered? <a href="/register">Create an account</a>
               </p>
             </form>
           </div>
@@ -23,27 +23,27 @@ const template = (onLogin) => html`
 `
 
 export function showLogin(ctx) {
-    ctx.render(template(onLogin))
+  ctx.render(template(onLogin))
 
-    async function onLogin(e) {
-      e.preventDefault();
-  
-      const formData = new FormData(e.target);
-      const email = formData.get('email');
-      const pass = formData.get('password');
-  
-      if ([email, pass].some(el => el === '')) {
-          alert('You have empty fields');
-          return null;
-      }
-  
+  async function onLogin(e) {
+    e.preventDefault();
 
-      try {
-        await login(email, pass);
-  
-        ctx.page.redirect('/')  
-      } catch (err) {
-        console.log(err.message);
-      }
+    const formData = new FormData(e.target);
+    const email = formData.get('email');
+    const pass = formData.get('password');
+
+    if ([email, pass].some(el => el === '')) {
+      alert('You have empty fields');
+      return null;
+    }
+
+
+    try {
+      await login(email, pass);
+
+      ctx.page.redirect('/dashboard')
+    } catch (err) {
+      console.log(err.message);
+    }
   }
-  }
+}

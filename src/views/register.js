@@ -52,7 +52,7 @@ export function showRegister(ctx) {
         try {
           await register(email, pass);
     
-          ctx.page.redirect('/')
+          ctx.page.redirect('/dashboard')
         } catch (err) {
           console.log(err.message);
         }

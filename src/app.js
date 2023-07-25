@@ -3,6 +3,7 @@ import { render } from "../../node_modules/lit-html/lit-html.js";
 import { showHome } from './views/home.js';
 import { showRegister } from './views/register.js';
 import { showLogin } from './views/login.js';
+import { showDashboard } from './views/dashboard.js';
 import { getUserData } from './utils.js';
 import { logout } from './api/auth.js';
 
@@ -46,7 +47,7 @@ function updateNav(ctx, next) {
 async function onLogout() {
     await logout();
 
-    page.redirect('/')
+    page.redirect('/dashboard')
 }
 
 page(decorateContext);
@@ -56,5 +57,6 @@ page(updateNav);
 page('/', showHome);
 page('/register', showRegister)
 page('/login', showLogin)
+page('/dashboard', showDashboard)
 
 page.start();
