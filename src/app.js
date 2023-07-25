@@ -4,9 +4,12 @@ import { showHome } from './views/home.js';
 import { showRegister } from './views/register.js';
 import { showLogin } from './views/login.js';
 import { getUserData } from './utils.js';
+import { logout } from './api/auth.js';
 
 
 const main = document.querySelector('main');
+
+document.getElementById('navReg').addEventListener('click', onLogout);
 
 function session(ctx, next) {
     const user = getUserData();
@@ -38,6 +41,12 @@ function updateNav(ctx, next) {
     }
 
     next()
+}
+
+async function onLogout() {
+    await logout();
+
+    page.redirect('/')
 }
 
 page(decorateContext);
