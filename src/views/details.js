@@ -1,8 +1,8 @@
 import { html, nothing} from "../../node_modules/lit-html/lit-html.js";
-import { getShoeById } from "../api/data.js";
+import { deleteShoeById, getShoeById } from "../api/data.js";
 
 
-const template = (shoe, user) => html`
+const template = (shoe, user, onDelete) => html`
         <section id="details">
           <div id="details-wrapper">
             <p id="details-title">Shoe Details</p>
@@ -23,7 +23,7 @@ const template = (shoe, user) => html`
             ${shoe._ownerId === user?._id ? html`
             <div id="action-buttons">
               <a href="" id="edit-btn">Edit</a>
-              <a href="" id="delete-btn">Delete</a>
+              <a href="" id="delete-btn" @click=${onDelete}>Delete</a>
             </div>
             </div>` :
             nothing
@@ -35,5 +35,16 @@ export async function showDetails(ctx) {
 
     const shoe = await getShoeById(shoeId);
 
-    ctx.render(template(shoe, ctx.user));
+    ctx.render(template(shoe, ctx.user, onDelete));
+
+    async function onDelete(event) {
+      event.preventDefault();
+
+      try {
+        await deleteShoeById(shoeId);
+        ctx.page.redirect('/dashboard');
+      } catch (e) {
+        alert(e.massage)
+      }
+    }
 }
