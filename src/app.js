@@ -8,11 +8,12 @@ import { getUserData } from './utils.js';
 import { logout } from './api/auth.js';
 import { showDetails } from './views/details.js';
 import { showAdd } from './views/add.js';
+import { showEdit } from './views/edit.js';
 
 
 const main = document.querySelector('main');
 
-document.getElementById('navReg').addEventListener('click', onLogout);
+document.getElementById('navLogout').addEventListener('click', onLogout);
 
 function session(ctx, next) {
     const user = getUserData();
@@ -57,10 +58,11 @@ page(session);
 page(updateNav);
 
 page('/', showHome);
-page('/register', showRegister)
-page('/login', showLogin)
-page('/dashboard', showDashboard)
-page('/details/:id', showDetails)
-page('/add', showAdd)
+page('/register', showRegister);
+page('/login', showLogin);
+page('/dashboard', showDashboard);
+page('/details/:id', showDetails);
+page('/add', showAdd);
+page('/edit/:id', showEdit);
 
 page.start();

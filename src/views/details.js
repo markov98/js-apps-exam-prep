@@ -22,7 +22,7 @@ const template = (shoe, user, onDelete) => html`
             <!--Edit and Delete are only for creator-->
             ${shoe._ownerId === user?._id ? html`
             <div id="action-buttons">
-              <a href="" id="edit-btn">Edit</a>
+              <a href="/edit/${shoe._id}" id="edit-btn">Edit</a>
               <a href="" id="delete-btn" @click=${onDelete}>Delete</a>
             </div>
             </div>` :
