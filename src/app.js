@@ -9,6 +9,7 @@ import { logout } from './api/auth.js';
 import { showDetails } from './views/details.js';
 import { showAdd } from './views/add.js';
 import { showEdit } from './views/edit.js';
+import { showSearch } from './views/search.js';
 
 
 const main = document.querySelector('main');
@@ -64,5 +65,6 @@ page('/dashboard', showDashboard);
 page('/details/:id', showDetails);
 page('/add', showAdd);
 page('/edit/:id', showEdit);
+page('/search', showSearch);
 
 page.start();
