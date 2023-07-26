@@ -1,11 +1,10 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
-import { addShoe } from "../api/data.js";
 
-const template = (onSubmit) => html`
-        <section id="create">
+const template = () => html`
+        <section id="edit">
           <div class="form">
-            <h2>Add item</h2>
-            <form class="create-form" @submit=${onSubmit}>
+            <h2>Edit item</h2>
+            <form class="edit-form">
               <input
                 type="text"
                 name="brand"
@@ -46,27 +45,8 @@ const template = (onSubmit) => html`
               <button type="submit">post</button>
             </form>
           </div>
-        </section>`
+        </section>`;
 
-export function showAdd(ctx) {
-    ctx.render(template(onSubmit));
-
-    async function onSubmit(e) {
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-
-        if (Object.values(data).some(val => !val)) {
-            alert('Empty fields');
-            return null;
-        }
-
-        try {
-            await addShoe(data);
-            ctx.page.redirect('/dashboard');
-        } catch (err) {
-            console.log(err.message);
-        }
-    }
+export function showEdit(ctx) {
+    ctx.render(template());
 }
